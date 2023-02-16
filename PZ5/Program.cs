@@ -11,15 +11,30 @@
         //Tom.unsubscribe();
         Tom.notifySubscribers();
        string text= Console.ReadLine();
-        //if(text =="Logic")
-        //{
-        //    Tom.mainBusinessLogic();
-        //}
+        if(text == "update")
+        {
+            Message hello = new Message("обновление базы");
+            hello.Print();
+        }
         publisher pub = new publisher();
         pub.Mainstate = new string[50];
         Console.ReadKey();
     }
-
+    interface Isubcriber
+    {
+        string Text { get; set; }
+    }
+    interface IPrint
+    {
+        void Print();
+    }
+    class Message : Isubcriber, IPrint
+    {
+        public string Text { get; set; }
+        public Message(string text) => Text = text;
+        public void Print() => Console.WriteLine(Text);
+    }
+}
     public class client
     {
         public client(int id, string name)
@@ -70,7 +85,7 @@
       
         }
 
-        }
+        
         public void mainBusinessLogic()
         {
         //При вызове команды посмотр логов отображает последние логи приложения 
