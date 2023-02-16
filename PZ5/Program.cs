@@ -2,66 +2,93 @@
 {
     static void Main(string[] args)
     {
-       // publisher state= new publisher();
-        client Tom = new client(1,"Tom");
+        // publisher state= new publisher();
+        client Tom = new client(1, "Tom");
         int[] mas = new int[50];
-        mas[0] =1;
-        
-        Tom.subscribe();
-        Tom.unsubscribe();
-        Tom.notifySubscribers();
-        Tom.mainBusinessLogic();
+        mas[0] = 1;
 
+        Tom.subscribe();
+        //Tom.unsubscribe();
+        Tom.notifySubscribers();
+       string text= Console.ReadLine();
+        //if(text =="Logic")
+        //{
+        //    Tom.mainBusinessLogic();
+        //}
+        publisher pub = new publisher();
+        pub.Mainstate = new string[50];
+        Console.ReadKey();
     }
-   
+
     public class client
     {
-        public client(int id,string name)
+        public client(int id, string name)
         {
-            ID= id;
+            ID = id;
             Name = name;
         }
 
-        private int _id = 1 ;
+        private int _id = 1;
         public int ID
-        { 
-            get { return _id ; }
+        {
+            get { return _id; }
             set { if (value < 1)
                 { Console.WriteLine("Ошибка"); }
-                    else _id = value ; }
+                else _id = value; }
         }
         private string _name = "NULL";
         public string Name
         {
-            get { return _name ; }
-            set { _name = value ; }
+            get { return _name; }
+            set { _name = value; }
+        }
+        void Example(params string[] names)
+        {
+            Example("feewf", "fewfe", "fewfew");
         }
         public void subscribe()
         {
+            //При подписки нового подпищика, системному аднимистратора высылается собщение 
             Console.WriteLine("Новый подпищик");
+
         }
         public void unsubscribe()
         {
+            //При потери подпищика, системному аднимистратора высылается собщение 
             Console.WriteLine("Потеря подпищика");
+
         }
+        public string meseage;
+        
         public void notifySubscribers()
         {
+            // При вызове метода сообщение подпищекам. Просит сначало написать текст потом отправляет его всем подпищикам. 
+            Console.WriteLine("Отправить сообщение подпищику");
+            meseage = Console.ReadLine();
             Console.WriteLine("Сообщение отправлено подпищика");
+    
+      
+        }
+
         }
         public void mainBusinessLogic()
         {
-            Console.WriteLine("открытие логов");
+        //При вызове команды посмотр логов отображает последние логи приложения 
+            Console.WriteLine("открытие логов"/*тут либо массив, либо лист */);
         }
     }
     public class publisher
     { 
+            
+    
     private string[] _mainstate ;
-    public string[] Mainstate
-        {
+             public string[] Mainstate
+              {
 
 
-            get { return _mainstate ; }
-            set { _mainstate = value ; }
-        }
+                 get { return _mainstate ; }
+                    set { _mainstate = value ; }
+                  }
+
+           
     }
-}
